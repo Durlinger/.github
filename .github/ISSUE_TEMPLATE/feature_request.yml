@@ -1,0 +1,68 @@
+name: Feature request
+description: Stel een nieuwe functionaliteit voor
+labels: ["enhancement"]
+body:
+  # Onderdeel en Prioriteit worden door .github/workflows/labeler.yml
+  # omgezet naar labels. Wijzig je hier een optie, pas dan ook
+  # .github/scripts/label-issue.sh aan.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Onderdeel
+      description: Welk deel van de applicatie raakt dit? Meerdere keuzes mogelijk.
+      multiple: true
+      options:
+        - Frontend
+        - Backend
+        - Integratie
+        - UX
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioriteit
+      options:
+        - laag
+        - middel
+        - hoog
+        - blokkerend
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Probleem of aanleiding
+      description: Welk probleem lost deze feature op, of wat is de aanleiding?
+      placeholder: "Als gebruiker wil ik… zodat ik…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Gewenste oplossing
+      description: Beschrijf zo concreet mogelijk wat je wilt.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatieven overwogen
+      description: Welke andere oplossingen heb je overwogen, en waarom vallen die af?
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptatiecriteria
+      description: Wanneer is deze feature klaar? Gebruik checkboxes.
+      placeholder: |
+        - [ ] …
+        - [ ] …
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Extra context
+      description: Screenshots, links, gerelateerde issues of andere relevante informatie.

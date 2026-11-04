@@ -1,0 +1,55 @@
+name: Taak
+description: Technische taak zoals refactoring, upgrades of configuratiewijzigingen
+labels: ["task"]
+body:
+  # Onderdeel en Prioriteit worden door .github/workflows/labeler.yml
+  # omgezet naar labels. Wijzig je hier een optie, pas dan ook
+  # .github/scripts/label-issue.sh aan.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Onderdeel
+      description: Welk deel van de applicatie raakt dit? Meerdere keuzes mogelijk.
+      multiple: true
+      options:
+        - Frontend
+        - Backend
+        - Integratie
+        - UX
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioriteit
+      options:
+        - laag
+        - middel
+        - hoog
+        - blokkerend
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: Doel
+      description: Wat moet er gedaan worden en waarom?
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptatiecriteria
+      description: Wanneer is deze taak klaar?
+      placeholder: |
+        - [ ] …
+        - [ ] …
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Extra context
+      description: Gerelateerde issues, documentatie of andere relevante informatie.
