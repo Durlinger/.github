@@ -102,6 +102,68 @@ Welke andere types (zoals `deps`, `perf`, `chore`) in de changelog verschijnen,
 staat per repository in `release-please-config.json`. Een type dat zichtbaar is
 in de changelog levert ook een patch-release op, en dus een deploy.
 
+## Claude Code
+
+De instructies die Claude in een repository krijgt, staan in `CLAUDE.md`. Laravel
+Boost stelt dat bestand samen uit zijn eigen richtlijnen, de skills van de
+geïnstalleerde pakketten en de eigen richtlijnen in `.ai/guidelines/`. Alles in
+`.ai/guidelines/` geldt dus voor **iedereen** die in die repository werkt.
+
+### Per persoon beperken wat Claude mag
+
+Werk je bijvoorbeeld alleen aan de frontend en wil je dat Claude de backend niet
+aanraakt? Zet dat dan **niet** in `.ai/guidelines/`: dan krijgt iedereen die
+regel, en twee van zulke bestanden spreken elkaar tegen. Gebruik je eigen
+`.claude/settings.local.json`. Dat bestand staat niet in git, en Claude Code
+blokkeert de bewerking echt in plaats van alleen een tekst mee te krijgen.
+
+Alleen backend (frontend afgeschermd):
+
+```json
+{
+  "permissions": {
+    "deny": [
+      "Edit(/resources/js/**)",
+      "Edit(/resources/css/**)",
+      "Edit(/package.json)",
+      "Edit(/package-lock.json)",
+      "Edit(/vite.config.js)"
+    ]
+  }
+}
+```
+
+Alleen frontend (backend afgeschermd):
+
+```json
+{
+  "permissions": {
+    "deny": [
+      "Edit(/app/**)",
+      "Edit(/database/**)",
+      "Edit(/routes/**)",
+      "Edit(/config/**)",
+      "Edit(/bootstrap/**)",
+      "Edit(/storage/**)",
+      "Edit(/composer.json)",
+      "Edit(/composer.lock)",
+      "Edit(/.env*)",
+      "Bash(php artisan migrate*)"
+    ]
+  }
+}
+```
+
+Goed om te weten:
+
+- Een pad dat met `/` begint, telt vanaf de root van de repository. Zonder `/`
+  telt het vanaf de map waarin Claude op dat moment staat.
+- Eén `Edit(...)`-regel dekt ook het schrijven van nieuwe bestanden; een aparte
+  `Write(...)`-regel is niet nodig.
+- `Bash(php artisan migrate*)` dekt ook `migrate:fresh` en `migrate:rollback`.
+- Het blokkeert de bewerkingstools van Claude, niet elk shellcommando. Het is
+  een vangrail, geen afgesloten deur: kijk de diff na zoals altijd.
+
 ## Een nieuwe repository inrichten
 
 - **Workflows:** neem de callers uit de README van
