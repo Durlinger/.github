@@ -9,6 +9,8 @@ geheims in.
 |---|---|
 | `SECURITY.md` | Hoe je een beveiligingslek meldt (tabblad Security van elke repository) |
 | `pull_request_template.md` | Standaardopbouw van een pull request: Waarom, Wat is er veranderd, Deploy-notities |
+| `CONTRIBUTING.md` | Werkwijze: branches, PR-titels, van commit naar productie, hotfix, een nieuwe repository inrichten |
+| `.github/ISSUE_TEMPLATE/` | Formulieren voor een bug, een wens en een taak (met onderdeel en prioriteit) |
 
 Een repository die een eigen versie van een van deze bestanden heeft, gebruikt
 die in plaats van de standaard. Wil je iets aanpassen dat voor iedereen geldt,

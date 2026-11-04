@@ -1,0 +1,71 @@
+name: Bug report
+description: Meld een fout of onverwacht gedrag
+labels: ["bug"]
+body:
+  # Onderdeel en Prioriteit worden door .github/workflows/labeler.yml
+  # omgezet naar labels. Wijzig je hier een optie, pas dan ook
+  # .github/scripts/label-issue.sh aan.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Onderdeel
+      description: Welk deel van de applicatie raakt dit? Meerdere keuzes mogelijk.
+      multiple: true
+      options:
+        - Frontend
+        - Backend
+        - Integratie
+        - UX
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioriteit
+      options:
+        - laag
+        - middel
+        - hoog
+        - blokkerend
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Beschrijving
+      description: Wat gaat er mis?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Stappen om te reproduceren
+      placeholder: |
+        1. Ga naar…
+        2. Klik op…
+        3. Zie fout
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Verwacht gedrag
+      description: Wat had er moeten gebeuren?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Werkelijk gedrag
+      description: Wat gebeurt er nu? Voeg eventueel een screenshot of foutmelding toe.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Extra context
+      description: Browser, omgeving, gerelateerde issues of andere relevante informatie.
